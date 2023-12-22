@@ -1,0 +1,32 @@
+name: Dokku Deploy
+run-name: ${{ github.actor }} is deploying to STAGING
+
+on:
+  push:
+    branches:
+      - staging
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cloning repo
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Prune Docker images
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+            host: ${{ vars.HOSTNAME_STAGING }}
+            username: ubuntu
+            key: ${{ secrets.SSH_PRIVATE_KEY_STAGING }}
+            port: 22
+            script: sudo docker system prune -a -f
+
+      - name: Push to dokku
+        uses: dokku/github-action@master
+        with:
+          git_push_flags: '--force'
+          git_remote_url: 'ssh://dokku@${{ vars.HOSTNAME_STAGING }}:22/${{ vars.APPNAME }}'
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_STAGING }}

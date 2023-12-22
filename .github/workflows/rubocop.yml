@@ -1,0 +1,30 @@
+name: RuboCop
+
+on:
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  rubocop:
+    name: Run RuboCop
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.2 # Modify this to match your Ruby version
+          bundler-cache: true
+
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+
+
+      - name: Run RuboCop
+        run: bundle exec rubocop --format github

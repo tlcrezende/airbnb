@@ -1,0 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo&family=Inter:wght@500;600&family=Readex+Pro:wght@500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

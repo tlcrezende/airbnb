@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+      args:
+        RUBY_VERSION: '3.2.2'
+        PG_MAJOR: '14'
+        NODE_MAJOR: '20'
+        YARN_VERSION: '1.22.19'
+    command: ./bin/dev
+    volumes:
+      - .:/app
+      - bundle-volume:/usr/local/bundle
+    ports:
+      - '3000:3000'
+    links:
+      - db:db
+    depends_on:
+      - db
+      - redis
+    stdin_open: true
+    tty: true
+    environment:
+      REDIS_URL: redis://redis:6379
+      REDIS_SIDEKIQ_DB: 1
+      DB_HOST: db
+      DB_PASSWORD: password
+      DB_USER: postgres
+
+
+  db:
+    image: postgres:14.5
+    volumes:
+      - db-volume:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: postgres
+      POSTGRES_HOST_AUTH_METHOD: trust
+
+  redis:
+    image: redis:7-alpine
+    volumes:
+      - redis-volume:/var/lib/redis/data
+
+volumes:
+  bundle-volume:
+  db-volume:
+  redis-volume:

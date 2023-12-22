@@ -1,0 +1,56 @@
+<nav class="p-5 
+            flex 
+            justify-between 
+            mb-5 
+            items-center 
+            sticky
+            z-10 
+            top-0 
+            left-0 
+            right-0 
+            bg-primary-900 
+            lg:bg-transparent 
+            lg:bg-gradient-to-b 
+            lg:from-primary-900 
+            lg:to-transparent">
+    <%= link_to(
+        image_tag("shared/fetchly-logo.svg", alt: "Fetchly logo"),
+        root_path,
+        method: :get)  %>
+
+    <div class="flex">
+        <% if !user_signed_in? && controller_name != 'registrations' %>
+            <%= button_to(
+                "Sign Up",
+                new_user_registration_path,
+                method: :get,
+                class: "btn mr-4 btn-secondary text-sm") %>
+        <% end %>
+        
+        <% if !user_signed_in? && controller_name != 'sessions' %>
+            <%= button_to(
+                "Sign In",
+                new_user_session_path,
+                method: :get,
+                class: "btn btn-secondary text-sm") %>
+        <% end %>
+
+        <% if user_signed_in? %>
+            <%= button_to(
+                current_user.email,
+                user_path(current_user),
+                method: :get,
+                class: "btn mr-4 btn-secondary text-sm") %>
+        <% end %>
+
+        <% if user_signed_in? %>
+            <%= button_to(
+                "Log Out",
+                destroy_user_session_path,
+                method: :delete,
+                class: "btn btn-secondary text-sm") %>
+
+        <% end %>
+    </div>
+</nav>
+

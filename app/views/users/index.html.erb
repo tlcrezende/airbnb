@@ -1,0 +1,9 @@
+<h1 class="text-5xl mb-4 text-gradient">Users</h1>
+
+<ul id="users">
+  <% @users.each do |user| %>
+    <li>
+      <%= render user %>
+    </li>
+  <% end %>
+</ul>
