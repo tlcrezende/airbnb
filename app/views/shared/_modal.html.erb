@@ -31,37 +31,7 @@
         data-transition-leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
         class="hidden relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg"
       >
-        <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
-        <div class='flex'> 
-        <div class='flex-none cursor-pointer hover:bg-red-200' data-modal-target='closeButton'>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.0" stroke="currentColor" class="w-6 h-6 left-0">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-          </svg>
-        </div>
-        <div class='grow'>
-          <h4 class="text-sm font-semibold leading-6 text-black text-center" id="modal-title">Sign in or Sing up</h4>
-        </div>
-        </div>
-          <hr class="border-b my-4">
-          <h2 class="text-xl font-semibold leading-6 text-gray-700" id="modal-title">Welcome to Airbnb</h2>
-          <div class="relative mt-2">
-            <input
-              type="email"
-              id="email"
-              name="email"
-              class="block w-full pl-10 pr-3 py-2 border rounded-md border-gray-300 focus:border-black focus:outline-none"
-            >
-            <label for="email" class="absolute inset-y-0 left-3 flex items-center text-gray-500">Email</label>
-          </div>
-          <button type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm text-gray-900  shadow-sm ring-1 ring-inset ring-black hover:bg-gray-50 focus:border-black">Continue</button>
-          <div class="mt-2 flex items-center justify-center">
-            <div class="border-b border-gray-300 w-full"></div>
-            <span class="text-xs px-4 bg-white text-gray-500">Or</span>
-            <div class="border-b border-gray-300 w-full"></div>
-          </div>
-          <button type="button" 
-          class="mt-3 inline-flex w-full justify-center rounded-md bg-sky-500 px-3 py-2 text-sm text-gray-900 shadow-sm ring-1 ring-inset ring-black hover:bg-sky-200">Continue With Facebook</button>
-        </div>
+        <%= render modal_content %>
       </div>
     </div>
   </div>
