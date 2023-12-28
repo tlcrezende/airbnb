@@ -6,3 +6,9 @@ import { application } from "./application"
 
 import HeaderController from "./header_controller"
 application.register("header", HeaderController)
+
+import ModalController from "./modal_controller"
+application.register("modal", ModalController)
+
+import UsersByEmailsController from "./users_by_emails_controller"
+application.register("users-by-emails", UsersByEmailsController)
