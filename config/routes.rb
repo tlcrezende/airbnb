@@ -17,4 +17,8 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:show, :index, :destroy, :edit, :update]
+
+  namespace :api do 
+    get 'users_by_emails', to: 'users_by_emails#show', as: 'users_by_emails'
+  end
 end
