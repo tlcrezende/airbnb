@@ -88,3 +88,5 @@ group :test do
 end
 
 gem "rspec-rails", "~> 6.1"
+
+gem "faker", "~> 3.2"
