@@ -67,10 +67,14 @@
                   data-transition-leave-end="transform opacity-0 scale-95"
                   >
                   <!-- Active: "bg-gray-100", Not Active: "" -->
-                  <div class='py-1 '>
-                    <a href="#" data-header-target='userAuthLink' class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1" id="user-menu-item-0">Sign in</a>
-                    <a href="#" data-header-target='userAuthLink' class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1" id="user-menu-item-1">Log in</a>
-                  </div>
+                  <% if user_signed_in? %>
+                    <%= link_to 'Log out', destroy_user_session_path, data: {'turbo-method': :delete}, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
+                  <% else %>
+                    <div class='py-1 '>
+                      <a href="#" data-header-target='userAuthLink' class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1" id="user-menu-item-0">Sign in</a>
+                      <a href="#" data-header-target='userAuthLink' class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1" id="user-menu-item-1">Log in</a>
+                    </div>
+                  <% end %>
                   <div class='py-1'>
                     <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1" id="user-menu-item-2">Host your home</a>
                     <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1" id="user-menu-item-2">Host an experience</a>
@@ -94,4 +98,4 @@
         </div>
       </nav>
 
-      <%= render "shared/modal" %>
+      <%= render "shared/modal", modal_content: 'home/user_auth_form' %>
